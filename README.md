@@ -1,3 +1,3 @@
-# Honika
+# Honoka
 
-이미지 업로드 웹사이트
+img upload website
