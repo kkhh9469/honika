@@ -4,4 +4,6 @@ from django.db import models
 
 class User(AbstractUser):
 
-    pass
+    """ CustomUserModel """
+
+    avatar = models.ImageField(blank=True)
