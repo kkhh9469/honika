@@ -20,7 +20,8 @@ class Tag(AbstractItem):
 
     """ Tags Model Definition """
 
-    pass
+    class Meta:
+        ordering = ("name",)
 
 
 class Room(core_models.AbstractTimeStampedModel):
