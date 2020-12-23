@@ -30,9 +30,9 @@ class Room(core_models.AbstractTimeStampedModel):
 
     title = models.CharField(max_length=100)
     creater = models.CharField(max_length=50)
-    tag = models.ManyToManyField(Tag, blank=True)
+    tag = models.ManyToManyField(Tag, related_name="rooms", blank=True)
     upload_user = models.ForeignKey(
-        user_models.User, on_delete=models.CASCADE, default=""
+        user_models.User, related_name="rooms", on_delete=models.CASCADE, default=""
     )
 
     def __str__(self):
@@ -44,8 +44,8 @@ class Photo(core_models.AbstractTimeStampedModel):
     """ Photo Model Definition """
 
     caption = models.CharField(max_length=50)
-    file = models.ImageField()
-    room = models.ForeignKey(Room, on_delete=models.PROTECT)
+    file = models.ImageField(upload_to="room_photo")
+    room = models.ForeignKey(Room, related_name="photos", on_delete=models.PROTECT)
 
     def __str__(self):
         return self.caption

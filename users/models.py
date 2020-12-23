@@ -6,4 +6,4 @@ class User(AbstractUser):
 
     """ CustomUserModel """
 
-    avatar = models.ImageField(blank=True)
+    avatar = models.ImageField(upload_to="avatars", blank=True)

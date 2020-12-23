@@ -1,11 +1,18 @@
 from django.contrib import admin
+from django.utils.html import mark_safe
 from . import models
+
+
+class PhotoInline(admin.TabularInline):
+    model = models.Photo
 
 
 @admin.register(models.Room)
 class RoomAdmin(admin.ModelAdmin):
 
     """ Room Admin Model Definition """
+
+    inlines = (PhotoInline,)
 
     fieldsets = (
         ("Basic Info", {"fields": ("title", "creater")}),
@@ -17,8 +24,11 @@ class RoomAdmin(admin.ModelAdmin):
         "title",
         "creater",
         "upload_user",
-        "Tags",
+        "tags",
+        "count_photos",
     )
+
+    raw_id_fields = ("upload_user",)
 
     list_filter = ("creater",)
 
@@ -28,11 +38,14 @@ class RoomAdmin(admin.ModelAdmin):
 
     ordering = ("creater",)
 
-    def Tags(self, object):
+    def tags(self, object):
         tags = []
         for tag in object.tag.all():
             tags.append(str(tag))
         return tags
+
+    def count_photos(self, object):
+        return object.photos.count()
 
 
 @admin.register(models.Tag)
@@ -40,10 +53,17 @@ class TagAdmin(admin.ModelAdmin):
 
     """ Tag Admin Model Definition """
 
+    pass
+
 
 @admin.register(models.Photo)
 class PhotoAdmin(admin.ModelAdmin):
 
-    """ Photo Admin """
+    """ Photo Admin Model Definition """
 
-    pass
+    list_display = ("room", "caption", "see_thumnail")
+
+    ordering = ("room", "caption")
+
+    def see_thumnail(self, object):
+        return mark_safe(f'<img width=120px src="{object.file.url}" />')
