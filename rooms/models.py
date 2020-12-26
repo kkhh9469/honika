@@ -28,7 +28,7 @@ class Room(core_models.AbstractTimeStampedModel):
 
     """ Room Model Definition """
 
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=200)
     creater = models.CharField(max_length=50)
     tag = models.ManyToManyField(Tag, related_name="rooms", blank=True)
     upload_user = models.ForeignKey(

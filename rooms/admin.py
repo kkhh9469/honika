@@ -26,6 +26,7 @@ class RoomAdmin(admin.ModelAdmin):
         "upload_user",
         "tags",
         "count_photos",
+        "updated",
     )
 
     raw_id_fields = ("upload_user",)
@@ -36,7 +37,10 @@ class RoomAdmin(admin.ModelAdmin):
 
     filter_horizontal = ("tag",)
 
-    ordering = ("creater",)
+    ordering = (
+        "-updated",
+        "creater",
+    )
 
     def tags(self, object):
         tags = []
