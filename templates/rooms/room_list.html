@@ -8,21 +8,21 @@
 
     {% include "partials/header.html" %}
 
-    {% for room in lastset_rooms %}
-        <h1>{{room}}</h1>
+    {% for room in rooms %}
+        <h1>{{room.title}} / {{room.creater}}</h1>
     {% endfor %} 
 
     <h5>
-        {% if page.has_previous %}
-            <a href="?page={{page.previous_page_number}}">이전 페이지</a>
+        {% if page_obj.has_previous %}
+            <a href="?page={{page_obj.previous_page_number}}">이전</a>
         {% endif %}
             
-        {% for page in page.paginator.page_range %}
+        {% for page in page_obj.paginator.page_range %}
             <a href="?page={{page}}">{{page}}</a>
         {% endfor %}
         
-        {% if page.has_next  %}
-            <a href="?page={{page.next_page_number}}">다음 페이지</a>
+        {% if page_obj.has_next  %}
+            <a href="?page={{page_obj.next_page_number}}">다음</a>
         {% endif %}
     </h5>
 
