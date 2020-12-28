@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from core import models as core_models
 from users import models as user_models
 
@@ -37,6 +38,9 @@ class Room(core_models.AbstractTimeStampedModel):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("rooms:detail", kwargs={"pk": self.pk})
 
 
 class Photo(core_models.AbstractTimeStampedModel):

@@ -8,8 +8,11 @@
     </title>
   </head>
   <body>
-    {% block main_page %}{% endblock main_page %} 
+    {% include "partials/header.html" %}
+
+    {% block main_page %}
+    {% endblock main_page %} 
     
-    
+    {% include "partials/footer.html" %}
   </body>
 </html>

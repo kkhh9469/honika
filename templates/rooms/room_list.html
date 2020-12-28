@@ -6,10 +6,10 @@
 
 {% block main_page %}
 
-    {% include "partials/header.html" %}
-
     {% for room in rooms %}
-        <h1>{{room.title}} / {{room.creater}}</h1>
+        <h3>
+            <a href="{% url 'rooms:detail' room.pk %}">{{room.title}} / {{room.creater}}</a>
+        </h3>
     {% endfor %} 
 
     <h5>
@@ -25,9 +25,5 @@
             <a href="?page={{page_obj.next_page_number}}">다음</a>
         {% endif %}
     </h5>
-
-    
-
-    {% include "partials/footer.html" %}
 
 {% endblock main_page %}

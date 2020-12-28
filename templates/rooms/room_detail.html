@@ -1,0 +1,24 @@
+{% extends "base.html" %} 
+
+{% block page_name %}
+    {{room.title}}
+{% endblock page_name %}
+
+{% block main_page %}
+
+
+    <div>
+        <h2>Title: {{room.title}}</h2>
+    </div>
+    <div>
+        <h3>creater: {{room.creater}}</h3>
+        <ul>
+            <h3>tags:</h3>
+            {% for tag in room.tag.all %}
+                <li>{{tag}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+{% endblock main_page %}
