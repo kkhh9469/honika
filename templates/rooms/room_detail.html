@@ -1,12 +1,10 @@
 {% extends "base.html" %} 
 
-{% block page_name %}
+{% block page_title %}
     {{room.title}}
-{% endblock page_name %}
+{% endblock page_title %}
 
 {% block main_page %}
-
-
     <div>
         <h2>Title: {{room.title}}</h2>
     </div>
@@ -19,6 +17,4 @@
             {% endfor %}
         </ul>
     </div>
-
-
 {% endblock main_page %}

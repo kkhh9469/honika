@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Search
+{% endblock page_title %}
+
+{% block search-bar %}{% endblock search-bar %}
+
+{% block main_page %}
+
+    <h2>검색</h2>
+
+    <form action="{% url 'rooms:search' %}" method="GET">
+        {{form.as_p}}
+        <button>확인</button>
+    </form>
+    <div>
+    {% for room in rooms %}
+        <ul>
+            <li>
+                <h5>Title</h5>
+                <a href="{% url 'rooms:detail' room.pk %}">{{room.title}}</a>
+            </li>
+            <li>
+                <h5>creater:</h5>
+                {{room.creater}}
+            </li>
+            <li>
+                <h5>tags:</h5>
+                {% for tag in room.tag.all %}
+                    {{tag}},
+                {% endfor %}
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
+
+  
+{% endblock main_page %}
