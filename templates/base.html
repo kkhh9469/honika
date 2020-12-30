@@ -9,9 +9,8 @@
   </head>
   <body>
     <header>
-      {% include "partials/header.html" %}
       {% block search-bar %}
-        <a href="{% url 'rooms:search' %}">검색</a>
+      {% include "partials/nav.html" %}
       {% endblock search-bar %}
     </header>
 

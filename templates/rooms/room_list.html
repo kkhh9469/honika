@@ -7,9 +7,35 @@
 {% block main_page %}
 
     {% for room in rooms %}
-        <h3>
-            <a href="{% url 'rooms:detail' room.pk %}">{{room.title}} / {{room.creater}}</a>
-        </h3>
+        <table>
+            <tr>
+                <td>
+                    <h3>Title:</h3>
+                </td>
+                <td>
+                    <a href="{% url 'rooms:detail' room.pk %}">{{room.title}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>Creater:</h3>
+                </td>
+                <td>
+                    <a>{{room.creater}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>Tags:</h3>
+                </td>
+                <td>
+                    {% for tag in room.tag.all %}
+                        <a>{{tag}}</a>
+                    {% endfor %}
+                </td>
+            </tr>
+
+        </table>
     {% endfor %} 
 
     <h5>
