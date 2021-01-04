@@ -6,46 +6,17 @@
 
 {% block main_page %}
 
-    <h2>검색</h2>
-
     <form action="{% url 'rooms:search' %}" method="GET">
         {{form.as_p}}
-        <button>확인</button>
+        <button>검색</button>
     </form>
-    <div>
+    
     {% for room in rooms %}
-        <table>
-            <tr>
-                <td>
-                    <h3>Title</h3>
-                </td>
-                <td>
-                    <a href="{% url 'rooms:detail' room.pk %}">{{room.title}}</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>creater:</h3>
-                </td>
-                <td>
-                    <a>{{room.creater}}</a>
-                </td>
-                
-            </tr>
-            <tr>
-                <td>
-                    <h3>tags:</h3>
-                </td>
-                <td>
-                    {% for tag in room.tag.all %}
-                        <a>{{tag}}</a>
-                    {% endfor %}
-
-                </td>
-            </tr>
-        </table>
-        {% endfor %}
-    </div>
+        <div class="room_list_base">
+            {% include "rooms/room_card.html" %}
+        </div>
+    {% endfor %}
+    
 
   
 {% endblock main_page %}

@@ -1,22 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>
         {% block page_title %}{% endblock page_title %} | HONOKA
     </title>
+    <script src="https://kit.fontawesome.com/7d1aec5952.js" crossorigin="anonymous"></script>
   </head>
-  <body>
-    <header>
+
+  <body class="mx-7 my-5 bg-gray-100">
+    <header class="bg-pink-500  flex flex-grow justify-between p-5 rounded-lg text-white text-lg">
       {% block search-bar %}
       {% include "partials/nav.html" %}
       {% endblock search-bar %}
     </header>
 
+    <div class="flex flex-col items-center bg-white">
     {% block main_page %}
     {% endblock main_page %} 
-    
-    {% include "partials/footer.html" %}
-  </body>
+    </div>
+    <!-- {% include "partials/footer.html" %} -->
+  </body>  
 </html>

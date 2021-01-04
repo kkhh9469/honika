@@ -2,7 +2,7 @@ from django.db import models
 from core import models as core_models
 
 
-class WishList(core_models.AbstractTimeStampedModel):
+class WishList(core_models.TimeStampedModel):
 
     """ Wish List Model Definition """
 

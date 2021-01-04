@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nav {
+  @apply text-black hover:text-pink-500 ml-3;
+}
+
+.room_list_base {
+  @apply flex items-center w-4/5 mt-10 p-5 border rounded-2xl border-pink-600 shadow-md;
+}

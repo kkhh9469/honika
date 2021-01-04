@@ -5,51 +5,36 @@
 {% endblock page_title %}
 
 {% block main_page %}
-
+    
     {% for room in rooms %}
-        <table>
-            <tr>
-                <td>
-                    <h3>Title:</h3>
-                </td>
-                <td>
-                    <a href="{% url 'rooms:detail' room.pk %}">{{room.title}}</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>Creater:</h3>
-                </td>
-                <td>
-                    <a>{{room.creater}}</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>Tags:</h3>
-                </td>
-                <td>
-                    {% for tag in room.tag.all %}
-                        <a>{{tag}}</a>
-                    {% endfor %}
-                </td>
-            </tr>
-
-        </table>
+        <div class="room_list_base">
+            {% include "rooms/room_card.html" %}
+        </div>
     {% endfor %} 
-
-    <h5>
+    
+    <div class="my-5 font-semibold justify-center">
+        <!-- 이전 버튼-->
         {% if page_obj.has_previous %}
-            <a href="?page={{page_obj.previous_page_number}}">이전</a>
+            <a class="nav" href="?page={{page_obj.previous_page_number}}">
+                <i class="fas fa-angle-left fa-lg"></i>
+            </a>
         {% endif %}
-            
+
+        <!-- 현재 페이지 -->
         {% for page in page_obj.paginator.page_range %}
-            <a href="?page={{page}}">{{page}}</a>
-        {% endfor %}
+            {% if page == page_obj.number %}
+                <a class="nav font-extrabold" href="?page={{page}}">{{page}}</a>
+            {% else %}
+                <a class="nav" href="?page={{page}}">{{page}}</a>
+                {% endif %}
+            {% endfor %}
         
+        <!-- 다음 버튼 -->
         {% if page_obj.has_next  %}
-            <a href="?page={{page_obj.next_page_number}}">다음</a>
+            <a class="nav" href="?page={{page_obj.next_page_number}}">
+                <i class="fas fa-angle-right fa-lg"></i>
+            </a>
         {% endif %}
-    </h5>
+    </div>
 
 {% endblock main_page %}

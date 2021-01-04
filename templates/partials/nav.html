@@ -1,11 +1,15 @@
-<a href="{% url 'core:home' %}">HONOKA</a>
-<ul>
-    {% if user.is_authenticated %}
-        <li><a href="{% url 'users:logout' %}">Log out</a></li>
-    {% else %}
-        <li><a href="{% url 'users:login' %}">Log in</a></li>
-    {% endif %}  
-    <li>
-        <a href="{% url 'rooms:search' %}">검색</a>
+
+<a class="font-semibold text-2xl" href="{% url 'core:home' %}">HONOKA</a>
+<ul class="flex w-1/6 justify-end">
+    <li class="ml-5">
+        <a href="{% url 'rooms:search' %}">
+            <i class="fas fa-search fa-lg"></i>
+        </a>
     </li>
+    {% if user.is_authenticated %}
+        <li class="ml-5"><a href="{% url 'users:logout' %}">로그아웃</a></li>
+    {% else %}
+        <li class="ml-5"><a href="{% url 'users:login' %}">로그인</a></li>
+        <li class="ml-5"><a href="{% url 'users:signup' %}">회원가입</a></li>
+    {% endif %}  
 </ul>
