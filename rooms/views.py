@@ -44,6 +44,9 @@ class SerchView(View):
             rooms = models.Room.objects.filter(**filter_args)
             rooms = reversed(rooms)
 
+            # To do
+            # paginiate 제한, page nav 만들기
+
         return render(
             request,
             "rooms/search.html",

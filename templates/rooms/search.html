@@ -6,9 +6,11 @@
 
 {% block main_page %}
 
-    <form action="{% url 'rooms:search' %}" method="GET">
+    <form class="search" action="{% url 'rooms:search' %}" method="GET">
         {{form.as_p}}
-        <button>검색</button>
+        <div class="flex justify-end">
+            <button class="btn">검색</button>
+        </div>
     </form>
     
     {% for room in rooms %}
@@ -16,6 +18,8 @@
             {% include "rooms/room_card.html" %}
         </div>
     {% endfor %}
+
+    
     
 
   

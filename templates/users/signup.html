@@ -6,10 +6,12 @@
 
 {% block main_page %}
 
-    <form method="POST" action="{% url 'users:signup' %}">
+    <form class="login" method="POST" action="{% url 'users:signup' %}">
         {% csrf_token %}
         {{form.as_p}}
-        <button>회원가입</button>
+        <div class="flex justify-end">
+            <button class="btn">회원가입</button>
+        </div>
     </form>
 
 {% endblock main_page %}

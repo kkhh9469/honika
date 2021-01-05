@@ -9,3 +9,39 @@
 .room_list_base {
   @apply flex items-center w-4/5 mt-10 p-5 border rounded-2xl border-pink-600 shadow-md;
 }
+
+.search {
+  @apply font-semibold;
+  p {
+    @apply mt-3;
+  }
+  ul {
+    @apply flex text-pink-500 grid grid-cols-12;
+    li {
+      @apply mt-3 mr-3;
+      input {
+        &:hover {
+          @apply cursor-pointer;
+        }
+      }
+    }
+  }
+}
+
+.login {
+  @apply font-semibold border border-pink-600 p-10 my-10 rounded-md bg-pink-50;
+  p {
+    @apply mt-3;
+  }
+}
+
+.btn {
+  @apply py-2 px-9 my-3 bg-pink-500 rounded-md text-white;
+}
+
+input {
+  @apply rounded-md border-2 border-pink-500 px-1;
+  &:focus {
+    @apply outline-none;
+  }
+}
