@@ -7,9 +7,10 @@
         </a>
     </li>
     {% if user.is_authenticated %}
-        <li class="ml-5"><a href="{% url 'users:logout' %}">로그아웃</a></li>
+        <li class="ml-5"><a href="{{user.get_absolute_url}}"><i class="fas fa-user-circle fa-lg"></i></a></li>
+        <li class="ml-5"><a href="{% url 'users:logout' %}"><i class="fas fa-sign-out-alt fa-lg"></i></a></li>
     {% else %}
-        <li class="ml-5"><a href="{% url 'users:login' %}">로그인</a></li>
+        <li class="ml-5"><a href="{% url 'users:login' %}"><i class="fas fa-sign-in-alt fa-lg"></i></a></li>
         <li class="ml-5"><a href="{% url 'users:signup' %}">회원가입</a></li>
     {% endif %}  
 </ul>

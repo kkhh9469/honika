@@ -32,6 +32,9 @@
   @apply font-semibold border border-pink-600 p-10 my-10 rounded-md bg-pink-50;
   p {
     @apply mt-3;
+    span {
+      @apply flex text-red-700 font-medium text-sm;
+    }
   }
 }
 
