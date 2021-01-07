@@ -11,7 +11,19 @@
             <span>{{user.email}}</span>
         </p>
 
-        <a href="#" class="btn">수정</a>
+        <a href="{% url 'users:update' %}" class="btn">수정</a>
     </div>
 
+    
+    {% if user.rooms.all.count > 0 %}
+        <div class="w-full flex flex-col items-center">
+            <h3 class="bg-pink-100 py-1 px-3 rounded-lg border border-pink-600 font-medium text-xl">업로드한 만화</h3>
+            {% for room in user.rooms.all %}
+                <div class="room_list_base">
+                    {% include "mixins/room_card.html" with room=room %}
+                </div>
+            {% endfor %} 
+        </div>
+    {% endif %}
+        
 {% endblock main_page %}

@@ -8,7 +8,7 @@
     
     {% for room in rooms %}
         <div class="room_list_base">
-            {% include "rooms/room_card.html" %}
+            {% include "mixins/room_card.html" with room=room %}
         </div>
     {% endfor %} 
     

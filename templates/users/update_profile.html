@@ -1,7 +1,7 @@
 {% extends "base.html" %} 
 
 {% block page_title %}
-    Log In
+    Update Profile
 {% endblock page_title %}
 
 {% block main_page %}
@@ -17,17 +17,8 @@
                 {% endfor %}
             {% endif %}  
         </p>
-        <p>
-            <label for="id_password">password</label>
-            {{form.password}}
-            {% if form.password.errors %}
-                {% for error in form.password.error %}
-                  <span>{{error}}</span>
-                {% endfor %}
-            {% endif %}  
-        </p>
         <div class="flex justify-center">
-            <button class="btn">로그인</button>
+            <button class="btn">수정</button>
         </div>
     </form>
 

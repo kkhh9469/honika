@@ -1,4 +1,4 @@
-from django.views.generic import FormView, DetailView
+from django.views.generic import FormView, DetailView, UpdateView
 from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
 from django.views import View
@@ -47,3 +47,14 @@ class SignUpView(FormView):
 class UserProfileView(DetailView):
 
     model = models.User
+    context_object_name = "user_obj"
+
+
+class UpdtaeProfileView(UpdateView):
+
+    model = models.User
+    template_name = "users/update_profile.html"
+    fields = ("email",)
+
+    def get_object(self, qureyset=None):
+        return self.request.user
