@@ -9,6 +9,15 @@
     <form class="login" method="POST" action="{% url 'users:signup' %}">
         {% csrf_token %}
         <p>
+            <label for="id_password1">닉네임</label>
+            {{form.first_name}}
+            {% if form.first_name.errors %}
+                {% for error in form.first_name.errors %}
+                    <span class="flex text-red-700 font-medium text-sm">{{error}}</span>
+                {% endfor %}
+            {% endif %} 
+        </p>
+        <p>
             <label for="id_email">Email</label>
             {{form.email}}
             
@@ -16,8 +25,7 @@
                 {% for error in form.email.errors %}
                   <span class="flex text-red-700 font-medium text-sm">{{error}}</span>
                 {% endfor %}
-            {% endif %}
-                
+            {% endif %}  
         </p>
         <p>
             <label for="id_password">password</label>
@@ -35,10 +43,8 @@
                 {% for error in form.password1.errors %}
                     <span class="flex text-red-700 font-medium text-sm">{{error}}</span>
                 {% endfor %}
-            {% endif %}
-                
+            {% endif %} 
         </p>
-
         <div class="flex justify-end">
             <button class="btn">회원가입</button>
         </div>

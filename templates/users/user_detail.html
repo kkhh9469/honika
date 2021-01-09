@@ -7,16 +7,19 @@
 {% block main_page %}
 
     <div class="flex flex-col items-center my-10 p-5 border rounded-2xl border-pink-600 bg-pink-100">
-        <p>
-            <span>{{user.email}}</span>
+        <p class="mb-5">
+            <span class="font-bold text-2xl" >{{user.first_name}}</span>
         </p>
+        <p>
+            <a href="{% url 'users:update' %}" class="btn">닉네임 수정</a>
+            <a href="{% url 'users:update' %}" class="btn">비밀번호 수정</a> 
 
-        <a href="{% url 'users:update' %}" class="btn">수정</a>
+        </p>
     </div>
 
     
     {% if user.rooms.all.count > 0 %}
-        <div class="w-full flex flex-col items-center">
+        <div class="w-full flex flex-col items-center border-t-2 pt-8  border-pink-500 border-opacity-5">
             <h3 class="bg-pink-100 py-1 px-3 rounded-lg border border-pink-600 font-medium text-xl">업로드한 만화</h3>
             {% for room in user.rooms.all %}
                 <div class="room_list_base">

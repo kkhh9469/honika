@@ -24,7 +24,6 @@ class RoomDetail(DetailView):
 class SerchView(View):
     def get(self, request):
         form = forms.SearchForm(request.GET)
-
         if form.is_valid():
             title = form.cleaned_data.get("title")
             creater = form.cleaned_data.get("creater")

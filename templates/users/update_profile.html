@@ -6,20 +6,20 @@
 
 {% block main_page %}
 
-    <form class="login" method="POST" action="{% url 'users:login' %}">
+    <form class="login" method="POST"">
         {% csrf_token %}
         <p>
-            <label for="id_email">Email</label>
-            {{form.email}}
-            {% if form.email.errors %}
-                {% for error in form.email.error %}
+            <label for="id_first_name">닉네임: </label>
+            {{form.first_name}}
+            {% if form.first_name.errors %}
+                {% for error in form.first_name.error %}
                   <span>{{error}}</span>
                 {% endfor %}
             {% endif %}  
         </p>
-        <div class="flex justify-center">
+        <p class="flex justify-center">
             <button class="btn">수정</button>
-        </div>
+        </p>
     </form>
 
 {% endblock main_page %}
