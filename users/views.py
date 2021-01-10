@@ -1,4 +1,5 @@
 from django.views.generic import FormView, DetailView, UpdateView
+from django.contrib.auth.views import PasswordChangeView
 from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
 from django.views import View
@@ -55,3 +56,10 @@ class UpdateProfileView(UpdateView):
 
     def get_object(self, qureyset=None):
         return self.request.user
+
+
+class UpdatePasswordView(PasswordChangeView):
+
+    template_name = "users/update_password.html"
+
+    success_url = reverse_lazy("core:home")
