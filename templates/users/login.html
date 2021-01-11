@@ -6,7 +6,7 @@
 
 {% block main_page %}
 
-    <form class="login" method="POST" action="{% url 'users:login' %}">
+    <form class="login" method="POST">
         {% csrf_token %}
         <p>
             <label for="id_email">Email</label>
