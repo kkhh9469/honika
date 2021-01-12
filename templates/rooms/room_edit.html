@@ -1,0 +1,44 @@
+{% extends "base.html" %} 
+
+{% block page_title %}
+    Room Edit
+{% endblock page_title %}
+
+{% block main_page %}
+
+    <form class="login" method="POST"">
+        {% csrf_token %}
+        <p>
+            <label for="id_title">Title: </label>
+            {{form.title}}
+            {% if form.title.errors %}
+                {% for error in form.title.error %}
+                  <span>{{error}}</span>
+                {% endfor %}
+            {% endif %}  
+        </p>
+        <p>
+            <label for="id_creater">Creater: </label>
+            {{form.creater}}
+            {% if form.creater.errors %}
+                {% for error in form.creater.error %}
+                  <span>{{error}}</span>
+                {% endfor %}
+            {% endif %}  
+        </p>
+        <p class="grid">
+            <label class="mr-1" for="id_tag">Tags: </label>
+            {{form.tag}}
+            {% if form.tag.errors %}
+                {% for error in form.tag.error %}
+                  <span>{{error}}</span>
+                {% endfor %}
+            {% endif %}
+            <span>Ctrl + Click</span>  
+        </p>
+        <p class="flex justify-center">
+            <button class="btn">수정</button>
+        </p>
+    </form>
+
+{% endblock main_page %}

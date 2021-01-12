@@ -56,3 +56,7 @@ class Room(core_models.TimeStampedModel):
     def first_photo(self):
         (photo,) = self.photos.all()[:1]
         return photo.file.url
+
+    def get_all_photos(self):
+        photos = self.photos.all()
+        return photos

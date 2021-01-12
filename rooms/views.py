@@ -1,5 +1,6 @@
-from django.views.generic import ListView, DetailView, View
-from django.shortcuts import render
+from django.views.generic import ListView, DetailView, View, UpdateView
+from django.urls import reverse_lazy
+from django.shortcuts import render, reverse, redirect
 from . import models, forms
 
 
@@ -51,3 +52,18 @@ class SerchView(View):
             "rooms/search.html",
             {"form": form, "rooms": rooms},
         )
+
+
+class EditRoomView(UpdateView):
+
+    model = models.Room
+    fields = (
+        "title",
+        "creater",
+        "tag",
+    )
+    template_name = "rooms/room_edit.html"
+
+    def get_success_url(self):
+        upload_user_pk = self.object.upload_user.pk
+        return reverse("users:profile", args=[upload_user_pk])

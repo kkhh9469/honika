@@ -22,8 +22,12 @@
         <div class="w-full flex flex-col items-center border-t-2 pt-8  border-pink-500 border-opacity-5">
             <h3 class="bg-pink-100 py-1 px-3 rounded-lg border border-pink-600 font-medium text-xl">업로드한 만화</h3>
             {% for room in user.rooms.all %}
-                <div class="room_list_base">
+                <div class="room_list_base flex flex-col">
                     {% include "mixins/room_card.html" with room=room %}
+                    <div class="flex w-full justify-around items-center mt-3">
+                        <div></div>
+                        <a href="{% url 'rooms:edit' room.pk %}" class="btn">수정</a>
+                    </div>
                 </div>
             {% endfor %} 
         </div>

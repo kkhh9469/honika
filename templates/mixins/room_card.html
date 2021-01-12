@@ -1,33 +1,35 @@
-<div class="mr-5">
-    <a href="{% url 'rooms:detail' room.pk %}">
-        <img class="w-48 border rounded-lg border-pink-600" src="{{room.first_photo}}" />
-    </a>
-</div>
-<div>
-    <div class="flex">
-        <div class="mr-1">
-            <h3 class="font-semibold text-lg">Title:</h3>
-        </div>
-        <div class="text-lg">
-            <a href="{% url 'rooms:detail' room.pk %}">{{room.title}}</a>
-        </div>
+<div class="flex items-center w-full">
+    <div class="mr-5">
+        <a href="{% url 'rooms:detail' room.pk %}">
+            <img class="w-48 border rounded-lg border-pink-600" src="{{room.first_photo}}" />
+        </a>
     </div>
-    <div class="flex mt-3">
-        <div class="mr-1">
-            <h3 class="font-semibold text-lg" >Creater:</h3>
+    <div>
+        <div class="flex">
+            <div class="mr-1">
+                <h3 class="font-semibold text-lg">Title:</h3>
+            </div>
+            <div class="text-lg">
+                <a href="{% url 'rooms:detail' room.pk %}">{{room.title}}</a>
+            </div>
         </div>
-        <div class="text-lg">
-            <a>{{room.creater}}</a>
+        <div class="flex mt-3">
+            <div class="mr-1">
+                <h3 class="font-semibold text-lg" >Creater:</h3>
+            </div>
+            <div class="text-lg">
+                <a>{{room.creater}}</a>
+            </div>
         </div>
-    </div>
-    <div class="flex mt-3">
-        <div class="mr-1">
-            <h3 class="font-semibold text-lg">Tags:</h3>
-        </div>
-        <div class="text-lg">
-            {% for tag in room.tag.all %}
-                <a class="bg-pink-100 p-1 rounded-lg m-1 border border-pink-600">{{tag}}</a>
-            {% endfor %}
+        <div class="flex mt-3">
+            <div class="mr-1">
+                <h3 class="font-semibold text-lg">Tags:</h3>
+            </div>
+            <div class="text-lg grid grid-cols-8">
+                {% for tag in room.tag.all %}
+                    <a class="bg-pink-100 p-1 rounded-lg m-1 border border-pink-600 text-center">{{tag}}</a>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
