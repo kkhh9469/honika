@@ -1,6 +1,10 @@
 from django.views.generic import ListView, DetailView, View, UpdateView
 from django.urls import reverse_lazy
+from django.http import Http404
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, reverse, redirect
+from users import mixins as user_mixins
 from . import models, forms
 
 
@@ -54,7 +58,7 @@ class SerchView(View):
         )
 
 
-class EditRoomView(UpdateView):
+class EditRoomView(user_mixins.LoggedInOnlyView, UpdateView):
 
     model = models.Room
     fields = (
@@ -67,3 +71,47 @@ class EditRoomView(UpdateView):
     def get_success_url(self):
         upload_user_pk = self.object.upload_user.pk
         return reverse("users:profile", args=[upload_user_pk])
+
+    def get_object(self, quryset=None):
+        room = super().get_object(queryset=quryset)
+        if room.upload_user.pk != self.request.user.pk:
+            raise Http404()
+        return room
+
+
+class RoomPhotosView(user_mixins.LoggedInOnlyView, DetailView):
+
+    model = models.Room
+    template_name = "rooms/room_photos.html"
+
+    def get_object(self, quryset=None):
+        room = super().get_object(queryset=quryset)
+        if room.upload_user.pk != self.request.user.pk:
+            raise Http404()
+        return room
+
+
+@login_required
+def delete_photo(request, room_pk, photo_pk):
+    user = request.user
+    try:
+        room = models.Room.objects.get(pk=room_pk)
+        if room.upload_user.pk != user.pk:
+            messages.error(request, "이미지를 지울 수 없습니다")
+        else:
+            models.Photo.objects.filter(pk=photo_pk).delete()
+        return redirect(reverse("rooms:photos", kwargs={"pk": room_pk}))
+    except models.Room.DoesNotExist:
+        return redirect(reverse("core:home"))
+
+
+class EditPhotoView(user_mixins.LoggedInOnlyView, UpdateView):
+
+    model = models.Photo
+    template_name = "rooms/photo_edit.html"
+    pk_url_kwarg = "photo_pk"
+    fields = ("caption",)
+
+    def get_success_url(self):
+        room_pk = self.kwargs.get("room_pk")
+        return reverse("rooms:photos", kwargs={"pk": room_pk})

@@ -1,0 +1,24 @@
+{% extends "base.html" %} 
+
+{% block page_title %}
+    Update Photo
+{% endblock page_title %}
+
+{% block main_page %}
+
+    <form class="login" method="POST"">
+        {% csrf_token %}
+
+        <p>
+            <label for="id_title">이름: </label>
+            {{form.caption}}
+              
+        </p>
+       
+        <p class="flex justify-center">
+            <button class="btn">수정</button>
+        </p>
+
+    </form>
+
+{% endblock main_page %}
