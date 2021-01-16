@@ -8,6 +8,9 @@
 
 <div class="container mx-auto my-10 flex flex-col ">
     <a href="{% url 'rooms:edit' room.pk %}"><i class="fas fa-chevron-left fa-lg ml-3"></i></a>
+    <div class="ml-3 mt-3 mb-5">
+        <a href="{% url 'rooms:add_photos' room.pk %}" class="btn">이미지 추가</a>
+    </div>
     {% for photo in room.photos.all %}
     <div class="m-3 p-5 flex justify-between border border-pink-500 border-opacity-30">
         <div class="flex items-start">
@@ -15,7 +18,7 @@
             <span class="ml-5 text-xl font-semibold">{{photo.caption}}</span>
         </div>
         <div class="flex flex-col justify-center w-1/5">
-            <a href="{% url 'rooms:edit_photo' room.pk photo.pk %}" class="btn text-center font-bold">수정</a>
+            <a href="{% url 'rooms:edit_photo' room.pk photo.pk %}" class="btn text-center font-bold">이름 수정</a>
             <a href="{% url 'rooms:delete_photo' room.pk photo.pk %}" class="text-center font-bold bg-red-600 py-2 px-9 my-3 rounded-md text-white">삭제</a> 
         </div>
         

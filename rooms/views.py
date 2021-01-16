@@ -1,6 +1,7 @@
-from django.views.generic import ListView, DetailView, View, UpdateView
+import os
+from django.views.generic import ListView, DetailView, View, UpdateView, FormView
 from django.urls import reverse_lazy
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, reverse, redirect
@@ -115,3 +116,29 @@ class EditPhotoView(user_mixins.LoggedInOnlyView, UpdateView):
     def get_success_url(self):
         room_pk = self.kwargs.get("room_pk")
         return reverse("rooms:photos", kwargs={"pk": room_pk})
+
+
+class AddPhotoView(user_mixins.LoggedInOnlyView, FormView):
+
+    model = models.Photo
+    template_name = "rooms/photo_create.html"
+    form_class = forms.CreatePhotoForm
+
+    def form_valid(self, form):
+        pk = self.kwargs.get("pk")
+        form.save(pk)
+        # form.save_m2m() 다중 업로드 구현하기
+        return redirect(reverse("rooms:photos", kwargs={"pk": pk}))
+
+
+class CreateRoomView(user_mixins.LoggedInOnlyView, FormView):
+
+    form_class = forms.CreateRoomForm
+    template_name = "rooms/room_create.html"
+
+    def form_valid(self, form):
+        room = form.save()
+        room.upload_user = self.request.user
+        room.save()
+        form.save_m2m()
+        return redirect(reverse("rooms:detail", kwargs={"pk": room.pk}))

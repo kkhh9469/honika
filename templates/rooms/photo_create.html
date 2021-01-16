@@ -1,0 +1,27 @@
+{% extends "base.html" %} 
+
+{% block page_title %}
+    Upload Photo
+{% endblock page_title %}
+
+{% block main_page %}
+
+    <form class="login" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+        {{photos}}
+        <!-- <p>
+            <label for="id_title">이름: </label>
+            {{form.caption}}
+        </p>
+        <p>
+            <label for="id_title">파일: </label>
+            {{form.file}}
+        </p> -->
+        <p class="flex justify-center">
+            <button class="btn">수정</button>
+        </p>
+
+    </form>
+
+{% endblock main_page %}
